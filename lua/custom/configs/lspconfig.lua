@@ -16,8 +16,8 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.ts_ls.setup {
-  on_attach = config.on_attach,
-  capabilities = config.capabilities,
+  on_attach = on_attach,
+  capabilities = capabilities,
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }, -- TSX included
   cmd = { "typescript-language-server", "--stdio" },
 }
@@ -27,3 +27,11 @@ lspconfig.emmet_ls.setup({
 
     -- Optionally add custom on_attach behavior here
 })
+lspconfig.clangd.setup {
+  on_attach = function (client,bufnr)
+    client.server_capabilities.signatureHelpProvider = false
+    on_attach(client,bufnr)
+  end,
+  capabilities = capabilities
+
+}
