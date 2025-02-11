@@ -3,6 +3,18 @@ local plugins = {
   { "hrsh7th/vim-vsnip" },
   -- Predefined snippets for React and TypeScript
   { "rafamadriz/friendly-snippets" },
+{
+  "luckasRanarison/tailwind-tools.nvim",
+  name = "tailwind-tools",
+  build = ":UpdateRemotePlugins",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-telescope/telescope.nvim", -- optional
+    "neovim/nvim-lspconfig", -- optional
+  config = function ()
+    require("tailwind-tools").setup()
+  end
+  }},
   {
     "windwp/nvim-ts-autotag",
     config = function()
@@ -32,7 +44,8 @@ local plugins = {
         "typescript-language-server",
         "svelte-language-server",
         "tailwindcss-language-server",
-        "vscode-langservers-extracted",
+        "html-lsp",
+        "css-lsp",
         "prettier",
         "emmet-ls",
         "clangd",

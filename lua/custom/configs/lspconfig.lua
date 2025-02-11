@@ -4,16 +4,22 @@ local capabilities = config.capabilities
 local init = config.on_init
 
 local lspconfig = require("lspconfig")
-local servers = { "ts_ls", "svelte", "tailwindcss", "html"}
+local servers = { "ts_ls", "svelte", "tailwindcss", "html-lsp","css-lsp"}
 
 -- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = init,
-    capabilities = capabilities,
-  }
-end
+lspconfig.tailwindcss.setup{
+  on_attach = on_attach;
+  capabilities = capabilities;
+}
+lspconfig.html.setup {
+  on_attach = on_attach;
+  capabilities = capabilities;
+}
+
+lspconfig.cssls.setup {
+  on_attach = on_attach;
+  capabilities = capabilities;
+}
 
 lspconfig.ts_ls.setup {
   on_attach = on_attach,
